@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block content %}
+   <div class="mb-3" style="color:aliceblue; margin: 20% auto; max-width: 400px;">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_div }}
+            <br>
+            <a class="btn btn-primary" href="{% url 'index' %}">Назад</a>
+            <input type="submit" class="btn btn-primary" value="Войти">
+        </form>      
+   </div>
+{% endblock %}

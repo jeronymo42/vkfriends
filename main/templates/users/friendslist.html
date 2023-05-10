@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Мои друзья
+{% endblock %}
+
+
+
+{% block content %}
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        {% for title, address in menu.items %}
+        <a class="navbar-brand" href="{% url address %}">{{title}}</a>
+        {% endfor %}
+    </div>
+</nav>
+   <div class="container mb-3" style="color:aliceblue; margin-top: 20px;">
+        <div class="row row-cols-auto" style="justify-content: space-evenly;">
+            {% for friend in friends %}
+            <div class="col card mb-3" style="max-width: 600px; min-width: 300px; margin: 10px 0px;">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ friend.username }}</h5>
+                            <a href="{% url 'delete' friend.pk %}" class="btn btn-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

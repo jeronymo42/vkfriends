@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+<nav class="navbar bg-body-tertiary" style="max-width: 200px; margin-top: 30%; margin-left: 40%;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'regis' %}">Регистрация</a>
+        <a class="navbar-brand" href="{% url 'log in' %}">Авторизация</a>
+    </div>
+</nav>
+{% endblock %}

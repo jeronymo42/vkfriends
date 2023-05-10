@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Все пользователи
+{% endblock %}
+
+
+
+{% block content %}
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        {% for title, adress in menu.items %}
+        <a class="navbar-brand" href="{% url adress %}">{{title}}</a>
+        {% endfor %}
+    </div>
+</nav>
+   <div class="container mb-3" style="color:aliceblue; margin-top: 20px;">
+        <div class="row row-cols-auto" style="justify-content: space-evenly;">
+            {% for user in users %}
+            <div class="col card mb-3" style="max-width: 600px; min-width: 300px; margin: 10px 0px;">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ user.username }}</h5>
+                            {% for username, state in status.items %}
+                            {% if username == user.id %}
+                            <p class="card-text"><small class="text-muted"> {{ state }}</small></p>
+                            {% if state == 'Пока не друзья' %}
+                            <a href="{% url 'friend request' user.id %}" class="btn btn-dark" style="display:block; min-width: 100px;">В друзья</a>
+                            {% endif %}
+                            <div style="display: flex; justify-content: space-around;">
+                            {% if state == 'Получен запрос' %}
+                            <a href="{% url 'friend request' user.pk %}" class="btn btn-success" style="max-width: 80px; max-width: 100px;">Добавить</a>
+                            {% endif %}
+                            {% if state == 'Друзья' or state == 'Получен запрос'%}
+                            <a href="{% url 'delete' user.id %}" class="btn btn-danger" style="max-width: 80px; max-width: 100px;">Удалить</a>
+                            {% endif %}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
